@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>목록 페이지</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background: white;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #333;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h2>🎵 목록 테이블</h2>
+    <table>
+        <tr><th>이름</th><th>번호</th></tr>
+        <tr><td>Bounce</td><td>100</td></tr>
+        <tr><td>사인</td><td>101</td></tr>
+        <tr><td>Whistle</td><td>102</td></tr>
+        <tr><td>호시탐탐</td><td>103</td></tr>
+        <tr><td>무아</td><td>104</td></tr>
+        <tr><td>벌룬인럽</td><td>105</td></tr>
+        <tr><td>라이크유</td><td>106</td></tr>
+        <tr><td>클락션</td><td>107</td></tr>
+        <tr><td>색소폰매직</td><td>108</td></tr>
+        <tr><td>earthquake</td><td>109</td></tr>
+        <tr><td>치킨바나나</td><td>110</td></tr>
+        <tr><td>와꾸춤</td><td>111</td></tr>
+        <tr><td>모찌</td><td>112</td></tr>
+        <tr><td>사랑받을준비완료</td><td>113</td></tr>
+        <tr><td>슈퍼그럼요</td><td>114</td></tr>
+        <tr><td>포켓몬</td><td>115</td></tr>
+        <tr><td>Luther</td><td>116</td></tr>
+        <tr><td>그래비티</td><td>118</td></tr>
+        <tr><td>쿵쿵따</td><td>119</td></tr>
+        <tr><td>왜요왜요</td><td>120</td></tr>
+        <tr><td>푸른산호초</td><td>121</td></tr>
+        <tr><td>진압해</td><td>122</td></tr>
+        <tr><td>아로아로</td><td>123</td></tr>
+        <tr><td>틱탁</td><td>124</td></tr>
+        <tr><td>짠쿵쾅</td><td>125</td></tr>
+        <tr><td>매니악</td><td>126</td></tr>
+        <tr><td>러브쉐이크</td><td>128</td></tr>
+        <tr><td>버터플라이</td><td>129</td></tr>
+        <tr><td>네모네모</td><td>130</td></tr>
+        <tr><td>A</td><td>131</td></tr>
+        <tr><td>애티튜드</td><td>132</td></tr>
+        <tr><td>홀드업</td><td>133</td></tr>
+        <tr><td>오늘만iloveyou</td><td>134</td></tr>
+        <tr><td>바니바니</td><td>135</td></tr>
+        <tr><td>BassDownLow</td><td>136</td></tr>
+        <!-- 생략된 부분은 줄임 -->
+    </table>
+</body>
+</html>
