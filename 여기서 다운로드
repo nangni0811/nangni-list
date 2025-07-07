@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>시그리스트</title>
+  <style>
+    body {
+      background-color: #fff4f2;
+      font-family: 'Noto Sans KR', sans-serif;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      background: #fff;
+      box-shadow: 0 0 15px rgba(0,0,0,0.05);
+    }
+    h1 {
+      text-align: center;
+      color: #d46a6a;
+      margin-bottom: 20px;
+    }
+    .banner {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto 20px;
+      border-radius: 10px;
+    }
+    #search {
+      display: block;
+      margin: 0 auto 30px;
+      padding: 12px;
+      width: 100%;
+      max-width: 400px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+    th {
+      cursor: pointer;
+      user-select: none;
+    }
+    th.sort-asc::after {
+      content: " ▲";
+    }
+    th.sort-desc::after {
+      content: " ▼";
+    }
+    tr:hover {
+      background-color: #ffeceb;
+    }
+    @media (max-width: 600px) {
+      td, th {
+        font-size: 14px;
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="banner.jpg" alt="시그리스트 배너" class="banner">
+    <h1>시그리스트</h1>
+    <input type="text" id="search" placeholder="검색어를 입력하세요...">
+    <table id="sig-list">
+      <thead>
+        <tr>
+          <th onclick="sortTable(0)">이름</th>
+          <th onclick="sortTable(1)">번호</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Bounce</td><td>100</td></tr>
+<tr><td>사인</td><td>101</td></tr>
+<tr><td>Whistle</td><td>102</td></tr>
+<tr><td>호시탐탐</td><td>103</td></tr>
+<tr><td>무아</td><td>104</td></tr>
+<tr><td>벌룬인럽</td><td>105</td></tr>
+<tr><td>라이크유</td><td>106</td></tr>
+<tr><td>클락션</td><td>107</td></tr>
+<tr><td>색소폰매직</td><td>108</td></tr>
+<tr><td>earthquake</td><td>109</td></tr>
+<tr><td>치킨바나나</td><td>110</td></tr>
+<tr><td>와꾸춤</td><td>111</td></tr>
+<tr><td>모찌</td><td>112</td></tr>
+<tr><td>사랑받을준비완료</td><td>113</td></tr>
+<tr><td>슈퍼그럼요</td><td>114</td></tr>
+<tr><td>포켓몬</td><td>115</td></tr>
+<tr><td>Luther</td><td>116</td></tr>
+<tr><td>그래비티</td><td>118</td></tr>
+<tr><td>쿵쿵따</td><td>119</td></tr>
+<tr><td>왜요왜요</td><td>120</td></tr>
+<tr><td>푸른산호초</td><td>121</td></tr>
+<tr><td>진압해</td><td>122</td></tr>
+<tr><td>아로아로</td><td>123</td></tr>
+<tr><td>틱탁</td><td>124</td></tr>
+<tr><td>짠쿵쾅</td><td>125</td></tr>
+<tr><td>매니악</td><td>126</td></tr>
+<tr><td>러브쉐이크</td><td>128</td></tr>
+<tr><td>버터플라이</td><td>129</td></tr>
+<tr><td>네모네모</td><td>130</td></tr>
+<tr><td>A</td><td>131</td></tr>
+<tr><td>애티튜드</td><td>132</td></tr>
+<tr><td>홀드업</td><td>133</td></tr>
+<tr><td>오늘만iloveyou</td><td>134</td></tr>
+<tr><td>바니바니</td><td>135</td></tr>
+<tr><td>BassDownLow</td><td>136</td></tr>
+<tr><td>HOT</td><td>141</td></tr>
+<tr><td>카리나닮았대</td><td>142</td></tr>
+<tr><td>키딩</td><td>143</td></tr>
+<tr><td>킥드럼베이스</td><td>144</td></tr>
+<tr><td>딩딩딩딩</td><td>145</td></tr>
+<tr><td>펌업더볼륨</td><td>146</td></tr>
+<tr><td>나랑사귈래</td><td>148</td></tr>
+<tr><td>미싱유</td><td>150</td></tr>
+<tr><td>스트로베리러쉬</td><td>151</td></tr>
+<tr><td>예삐예삐</td><td>152</td></tr>
+<tr><td>조지아</td><td>153</td></tr>
+<tr><td>자기야화풀어</td><td>154</td></tr>
+<tr><td>솜사탕</td><td>155</td></tr>
+<tr><td>The chase</td><td>156</td></tr>
+<tr><td>아이스크림</td><td>162</td></tr>
+<tr><td>외모체크</td><td>163</td></tr>
+<tr><td>Notlikeus</td><td>165</td></tr>
+<tr><td>푱푱</td><td>180</td></tr>
+<tr><td>하트하트</td><td>184</td></tr>
+<tr><td>왠지</td><td>185</td></tr>
+<tr><td>새끈빠끈</td><td>189</td></tr>
+<tr><td>핑크레이디</td><td>191</td></tr>
+<tr><td>핫해</td><td>195</td></tr>
+<tr><td>나루토</td><td>199</td></tr>
+<tr><td>LOVE</td><td>200</td></tr>
+<tr><td>슈파두파</td><td>201</td></tr>
+<tr><td>팬서비스</td><td>202</td></tr>
+<tr><td>머스타드</td><td>206</td></tr>
+<tr><td>고민중독</td><td>207</td></tr>
+<tr><td>테디베어</td><td>208</td></tr>
+<tr><td>라라라</td><td>209</td></tr>
+<tr><td>우치다</td><td>210</td></tr>
+<tr><td>BoomBoomBass</td><td>205</td></tr>
+<tr><td>코카인</td><td>211</td></tr>
+<tr><td>청바지</td><td>213</td></tr>
+<tr><td>셔플</td><td>217</td></tr>
+<tr><td>터치</td><td>218</td></tr>
+<tr><td>이머전시</td><td>219</td></tr>
+<tr><td>위플래쉬</td><td>222</td></tr>
+<tr><td>도어</td><td>223</td></tr>
+<tr><td>빛을따라서</td><td>224</td></tr>
+<tr><td>타니응원가</td><td>225</td></tr>
+<tr><td>candythief</td><td>226</td></tr>
+<tr><td>알로하</td><td>227</td></tr>
+<tr><td>너뿐이야</td><td>228</td></tr>
+<tr><td>투배드</td><td>233</td></tr>
+<tr><td>HandsUp</td><td>235</td></tr>
+<tr><td>우유</td><td>242</td></tr>
+<tr><td>엑스트라</td><td>243</td></tr>
+<tr><td>레벨하트</td><td>244</td></tr>
+<tr><td>likejennie</td><td>246</td></tr>
+<tr><td>슈퍼소닉</td><td>247</td></tr>
+<tr><td>귀여워서미안해</td><td>248</td></tr>
+<tr><td>마그네틱</td><td>250</td></tr>
+<tr><td>No man</td><td>252</td></tr>
+<tr><td>오빠바이러스</td><td>258</td></tr>
+<tr><td>간바레센빠이</td><td>262</td></tr>
+<tr><td>아헤가오</td><td>264</td></tr>
+<tr><td>유누응원가</td><td>266</td></tr>
+<tr><td>키세스</td><td>268</td></tr>
+<tr><td>채영응원가</td><td>272</td></tr>
+<tr><td>선희응원가</td><td>273</td></tr>
+<tr><td>롤러코스터</td><td>277</td></tr>
+<tr><td>가비응원가</td><td>280</td></tr>
+<tr><td>유이린응원가</td><td>281</td></tr>
+<tr><td>아파트</td><td>282</td></tr>
+<tr><td>D지는거야</td><td>283</td></tr>
+<tr><td>소다응원가</td><td>284</td></tr>
+<tr><td>리윤응원가</td><td>285</td></tr>
+<tr><td>루루응원가</td><td>286</td></tr>
+<tr><td>후잉응원가</td><td>287</td></tr>
+<tr><td>버블</td><td>288</td></tr>
+<tr><td>나빌레라</td><td>289</td></tr>
+<tr><td>도맑음응원가</td><td>290</td></tr>
+<tr><td>엘리베이터</td><td>292</td></tr>
+<tr><td>리아응원가</td><td>294</td></tr>
+<tr><td>사쿠란보</td><td>295</td></tr>
+<tr><td>패스트카</td><td>299</td></tr>
+<tr><td>한마디</td><td>300</td></tr>
+<tr><td>LSD</td><td>301</td></tr>
+<tr><td>UP</td><td>303</td></tr>
+<tr><td>보성UP</td><td>305</td></tr>
+<tr><td>야메떼구다사이</td><td>309</td></tr>
+<tr><td>첫만남</td><td>310</td></tr>
+<tr><td>날라리</td><td>311</td></tr>
+<tr><td>너와의모든지금</td><td>313</td></tr>
+<tr><td>원더랜드</td><td>322</td></tr>
+<tr><td>다이스키</td><td>323</td></tr>
+<tr><td>킹받쥬</td><td>330</td></tr>
+<tr><td>제로투</td><td>333</td></tr>
+<tr><td>립앤힙</td><td>334</td></tr>
+<tr><td>인더클럽</td><td>353</td></tr>
+<tr><td>가라사대</td><td>366</td></tr>
+<tr><td>윤하랑응원가</td><td>368</td></tr>
+<tr><td>오빠달려붕붕</td><td>374</td></tr>
+<tr><td>헨타이</td><td>387</td></tr>
+<tr><td>염글게염글게</td><td>395</td></tr>
+<tr><td>앙카</td><td>400</td></tr>
+<tr><td>바닥드라군</td><td>433</td></tr>
+<tr><td>낭니응원가</td><td>442</td></tr>
+<tr><td>터미널</td><td>444</td></tr>
+<tr><td>EDM</td><td>455</td></tr>
+<tr><td>바우치</td><td>464</td></tr>
+<tr><td>몸</td><td>475</td></tr>
+<tr><td>홈스윗홈</td><td>488</td></tr>
+<tr><td>댄스댄스</td><td>500</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById('search');
+    searchInput.addEventListener('keyup', function () {
+      const filter = searchInput.value.toLowerCase();
+      const rows = document.querySelectorAll('#sig-list tbody tr');
+      rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.style.display = text.includes(filter) ? '' : 'none';
+      });
+    });
+
+    let sortDirection = [true, true]; // 각 열의 오름차순 여부
+
+    function sortTable(columnIndex) {
+      const table = document.getElementById("sig-list");
+      const tbody = table.tBodies[0];
+      const rows = Array.from(tbody.rows);
+      const ascending = sortDirection[columnIndex];
+
+      rows.sort((a, b) => {
+        const valA = a.cells[columnIndex].innerText;
+        const valB = b.cells[columnIndex].innerText;
+        const aNum = parseInt(valA, 10);
+        const bNum = parseInt(valB, 10);
+        if (!isNaN(aNum) && !isNaN(bNum)) {
+          return ascending ? aNum - bNum : bNum - aNum;
+        }
+        return ascending ? valA.localeCompare(valB) : valB.localeCompare(valA);
+      });
+
+      rows.forEach(row => tbody.appendChild(row));
+      sortDirection[columnIndex] = !ascending;
+
+      const headers = table.querySelectorAll("th");
+      headers.forEach(h => h.classList.remove("sort-asc", "sort-desc"));
+      headers[columnIndex].classList.add(ascending ? "sort-asc" : "sort-desc");
+    }
+  </script>
+</body>
+</html>
