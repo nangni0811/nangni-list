@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>시그리스트</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #FFF7F3;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 700px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #FFF0F5;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        img {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #f2c1d1;
+            border-radius: 8px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border-bottom: 1px dashed #f2c1d1;
+        }
+        th {
+            background-color: #FFDDE6;
+            cursor: pointer;
+        }
+        tr:hover {
+            background-color: #FFF5F8;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <img src="banner.png" alt="배너 이미지">
+    <h2>시그리스트</h2>
+    <input type="text" id="searchInput" placeholder="검색어를 입력하세요..." onkeyup="searchTable()">
+    <table id="sigTable">
+        <thead>
+            <tr>
+                <th onclick="sortTable(0)">이름</th>
+                <th onclick="sortTable(1)">번호</th>
+            </tr>
+        </thead>
+        <tbody>
+<tr><td>Bounce</td><td>100</td></tr>
+<tr><td>사인</td><td>101</td></tr>
+<tr><td>Whistle</td><td>102</td></tr>
+<tr><td>호시탐탐</td><td>103</td></tr>
+<tr><td>무아</td><td>104</td></tr>
+
+        </tbody>
+    </table>
+</div>
+<script>
+function searchTable() {
+    var input = document.getElementById("searchInput").value.toLowerCase();
+    var rows = document.querySelectorAll("#sigTable tbody tr");
+    rows.forEach(row => {
+        var name = row.cells[0].textContent.toLowerCase();
+        var number = row.cells[1].textContent.toLowerCase();
+        row.style.display = name.includes(input) || number.includes(input) ? "" : "none";
+    });
+}
+
+function sortTable(columnIndex) {
+    var table = document.getElementById("sigTable");
+    var rows = Array.from(table.rows).slice(1); // exclude header
+    var ascending = table.dataset.sortOrder !== "asc";
+    rows.sort((a, b) => {
+        let valA = a.cells[columnIndex].textContent;
+        let valB = b.cells[columnIndex].textContent;
+        return (ascending ? 1 : -1) * (columnIndex === 1 ? valA - valB : valA.localeCompare(valB));
+    });
+    table.dataset.sortOrder = ascending ? "asc" : "desc";
+    rows.forEach(row => table.tBodies[0].appendChild(row));
+}
+</script>
+</body>
+</html>
