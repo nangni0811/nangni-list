@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>시그리스트</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fff5f5;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+        .banner {
+            max-width: 200px;
+            margin: 0 auto 20px;
+        }
+        .container {
+            display: inline-block;
+            text-align: left;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ffb6b6;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ffc0cb;
+        }
+        th {
+            cursor: pointer;
+            background-color: #ffe4e1;
+        }
+        tr:hover {
+            background-color: #fff0f5;
+        }
+        .sig-number {
+            text-align: right;
+            color: #d36c6c;
+            font-weight: bold;
+        }
+        .sig-name {
+            text-align: left;
+            padding-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <img src="banner.png" alt="배너 이미지" class="banner">
+    <div class="container">
+        <input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="시그 이름을 검색하세요">
+        <table id="sigTable">
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">시그 이름</th>
+                    <th onclick="sortTable(1)">번호</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td class='sig-name'>Bounce</td><td class='sig-number'>100</td></tr>
+<tr><td class='sig-name'>사인</td><td class='sig-number'>101</td></tr>
+<tr><td class='sig-name'>Whistle</td><td class='sig-number'>102</td></tr>
+<tr><td class='sig-name'>호시탐탐</td><td class='sig-number'>103</td></tr>
+<tr><td class='sig-name'>무아</td><td class='sig-number'>104</td></tr>
+<tr><td class='sig-name'>벌룬인럽</td><td class='sig-number'>105</td></tr>
+<tr><td class='sig-name'>라이크유</td><td class='sig-number'>106</td></tr>
+<tr><td class='sig-name'>클락션</td><td class='sig-number'>107</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function searchFunction() {
+            var input = document.getElementById("searchInput");
+            var filter = input.value.toLowerCase();
+            var table = document.getElementById("sigTable");
+            var tr = table.getElementsByTagName("tr");
+
+            for (var i = 1; i < tr.length; i++) {
+                var td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    var txtValue = td.textContent || td.innerText;
+                    tr[i].style.display = txtValue.toLowerCase().indexOf(filter) > -1 ? "" : "none";
+                }
+            }
+        }
+
+        function sortTable(n) {
+            var table = document.getElementById("sigTable");
+            var rows = Array.from(table.rows).slice(1);
+            var switching = true;
+            var dir = "asc";
+
+            while (switching) {
+                switching = false;
+                var shouldSwitch;
+
+                for (var i = 0; i < rows.length - 1; i++) {
+                    shouldSwitch = false;
+                    var x = rows[i].getElementsByTagName("TD")[n];
+                    var y = rows[i + 1].getElementsByTagName("TD")[n];
+                    var xContent = isNaN(x.innerHTML) ? x.innerHTML.toLowerCase() : parseInt(x.innerHTML);
+                    var yContent = isNaN(y.innerHTML) ? y.innerHTML.toLowerCase() : parseInt(y.innerHTML);
+
+                    if ((dir == "asc" && xContent > yContent) || (dir == "desc" && xContent < yContent)) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                } else {
+                    if (dir == "asc") {
+                        dir = "desc";
+                        switching = true;
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
