@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<title>시그 리스트</title>
+<style>
+    body {
+        background-color: #FFF6F2;
+        font-family: 'Arial', sans-serif;
+    }
+    .container {
+        background-color: white;
+        border-radius: 12px;
+        padding: 30px;
+        max-width: 560px;
+        margin: 30px auto;
+        box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    h1 {
+        color: #FF8A8A;
+        text-align: center;
+    }
+    input[type="text"] {
+        width: 70%;
+        padding: 8px 12px;
+        margin: 20px auto;
+        display: block;
+        border: 2px solid #FFC0CB;
+        border-radius: 20px;
+        outline: none;
+        font-size: 16px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    th {
+        background-color: #FFE0E0;
+        color: #333;
+        padding: 10px;
+        cursor: pointer;
+    }
+    td {
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid #f2caca;
+    }
+    tr:hover {
+        background-color: #FFF0F0;
+    }
+    .sig-name {
+        font-weight: bold;
+    }
+    .divider {
+        color: #d88;
+        padding: 0 8px;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+  <img alt="배너 이미지" class="banner" src="banner.jpg" style="display: block; margin: 20px auto; width: 70%; height: auto;"/>
+  <input class="search-box" id="search" placeholder="시그 검색..." type="text"/>
+  <table id="sigTable">
+    <thead>
+      <tr><th onclick="sortTable()">번호 ▲</th><th></th></tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+</div>
+
+<!-- 내장 데이터: 파싱된 357개 -->
+<script type="application/json" id="data">
+[
+  {
+    "no": 112,
+    "name": "진압해"
+  },
+  {
+    "no": 123,
+    "name": "내얘길들어봐"
+  },
+  {
+    "no": 124,
+    "name": "왜요왜요"
+  },
+  {
+    "no": 125,
+    "name": "날라리"
+  },
+  {
+    "no": 126,
+    "name": "카리나닮았대"
+  },
+  {
+    "no": 128,
+    "name": "버블"
+  },
+  {
+    "no": 129,
+    "name": "candy theif"
+  },
+  {
+    "no": 132,
+    "name": "쓸애기"
+  },
+  {
+    "no": 133,
+    "name": "마그네틱"
+  },
+  {
+    "no": 135,
+    "name": "무아"
+  },
+  {
+    "no": 139,
+    "name": "쌔끈빠끈"
+  },
+  {
+    "no": 141,
+    "name": "빛을따라서"
+  },
+  {
+    "no": 150,
+    "name": "바빠"
+  },
+  {
+    "no": 152,
+    "name": "외모체크"
+  },
+  {
+    "no": 153,
+    "name": "러브쉐이크"
+  },
+  {
+    "no": 157,
+    "name": "키딩"
+  },
+  {
+    "no": 158,
+    "name": "찔려"
+  },
+  {
+    "no": 167,
+    "name": "여름이었다"
+  },
+  {
+    "no": 171,
+    "name": "BDZ"
+  },
+  {
+    "no": 181,
+    "name": "뻐킹뱅어"
+  },
+  {
+    "no": 182,
+    "name": "WTF"
+  },
+  {
+    "no": 184,
+    "name": "야메떼"
+  },
+  {
+    "no": 185,
+    "name": "킹받쥬"
+  },
+  {
+    "no": 188,
+    "name": "피리송"
+  },
+  {
+    "no": 189,
+    "name": "롤러코스터"
+  },
+  {
+    "no": 191,
+    "name": "간바레센빠이"
+  },
+  {
+    "no": 197,
+    "name": "런웨이"
+  },
+  {
+    "no": 200,
+    "name": "팬서비스"
+  },
+  {
+    "no": 201,
+    "name": "젤리젤리"
+  },
+  {
+    "no": 203,
+    "name": "I want you"
+  },
+  {
+    "no": 218,
+    "name": "위플래시"
+  },
+  {
+    "no": 219,
+    "name": "몸"
+  },
+  {
+    "no": 220,
+    "name": "bass down low"
+  },
+  {
+    "no": 222,
+    "name": "뱅뱅뱅"
+  },
+  {
+    "no": 223,
+    "name": "넌나의N이되어줘"
+  },
+  {
+    "no": 225,
+    "name": "우주로"
+  },
+  {
+    "no": 226,
+    "name": "Strawberry Rush"
+  },
+  {
+    "no": 228,
+    "name": "오늘만 ILOVEYOU"
+  },
+  {
+    "no": 232,
+    "name": "미야오"
+  },
+  {
+    "no": 233,
+    "name": "왠지"
+  },
+  {
+    "no": 234,
+    "name": "섹시푸드"
+  },
+  {
+    "no": 237,
+    "name": "고민중독"
+  },
+  {
+    "no": 244,
+    "name": "여우"
+  },
+  {
+    "no": 248,
+    "name": "나랑사귈래"
+  },
+  {
+    "no": 252,
+    "name": "라라리라라"
+  },
+  {
+    "no": 255,
+    "name": "사랑받을준비완료"
+  },
+  {
+    "no": 258,
+    "name": "오빠바이러스"
+  },
+  {
+    "no": 264,
+    "name": "아헤가오"
+  },
+  {
+    "no": 266,
+    "name": "뚜뚜뚜뚜"
+  },
+  {
+    "no": 278,
+    "name": "GOOD STUFF"
+  },
+  {
+    "no": 280,
+    "name": "슈퍼밍밍"
+  },
+  {
+    "no": 282,
+    "name": "내꺼야"
+  },
+  {
+    "no": 287,
+    "name": "핑크레이디"
+  },
+  {
+    "no": 299,
+    "name": "돈생기면풍쏨"
+  },
+  {
+    "no": 300,
+    "name": "한마디"
+  },
+  {
+    "no": 301,
+    "name": "Rich Man"
+  },
+  {
+    "no": 303,
+    "name": "아이스크림"
+  },
+  {
+    "no": 304,
+    "name": "100개"
+  },
+  {
+    "no": 305,
+    "name": "Pink hoodie"
+  },
+  {
+    "no": 307,
+    "name": "레츠고"
+  },
+  {
+    "no": 313,
+    "name": "Door"
+  },
+  {
+    "no": 322,
+    "name": "이쁜여자"
+  },
+  {
+    "no": 323,
+    "name": "찰칵"
+  },
+  {
+    "no": 324,
+    "name": "너와의모든지금"
+  },
+  {
+    "no": 333,
+    "name": "바니바니"
+  },
+  {
+    "no": 345,
+    "name": "LSD"
+  },
+  {
+    "no": 363,
+    "name": "뛰어"
+  },
+  {
+    "no": 374,
+    "name": "Like Jennie"
+  },
+  {
+    "no": 386,
+    "name": "눈물참기"
+  },
+  {
+    "no": 387,
+    "name": "누나가알려줄게"
+  },
+  {
+    "no": 388,
+    "name": "헨타이"
+  },
+  {
+    "no": 389,
+    "name": "EDM"
+  },
+  {
+    "no": 401,
+    "name": "like i do"
+  },
+  {
+    "no": 402,
+    "name": "duet Lips Hips"
+  },
+  {
+    "no": 404,
+    "name": "텐션업"
+  },
+  {
+    "no": 424,
+    "name": "바닥드라군"
+  },
+  {
+    "no": 434,
+    "name": "살아있네"
+  },
+  {
+    "no": 442,
+    "name": "둥따다"
+  },
+  {
+    "no": 447,
+    "name": "스텝hip"
+  },
+  {
+    "no": 473,
+    "name": "전략적후퇴"
+  },
+  {
+    "no": 477,
+    "name": "사기캐"
+  },
+  {
+    "no": 490,
+    "name": "슈퍼티모"
+  },
+  {
+    "no": 501,
+    "name": "호미들"
+  },
+  {
+    "no": 505,
+    "name": "호영레이블"
+  },
+  {
+    "no": 506,
+    "name": "Beggin"
+  },
+  {
+    "no": 508,
+    "name": "퐁퐁구"
+  },
+  {
+    "no": 509,
+    "name": "[C9]허당박"
+  },
+  {
+    "no": 510,
+    "name": "주차개"
+  },
+  {
+    "no": 511,
+    "name": "혜루신호탄"
+  },
+  {
+    "no": 527,
+    "name": "슈퍼킥드베"
+  },
+  {
+    "no": 544,
+    "name": "NaNaNa"
+  },
+  {
+    "no": 555,
+    "name": "Fast Cars"
+  },
+  {
+    "no": 557,
+    "name": "초초신호탄"
+  },
+  {
+    "no": 572,
+    "name": "파밍단신호탄"
+  },
+  {
+    "no": 573,
+    "name": "Only Sera"
+  },
+  {
+    "no": 576,
+    "name": "아윤신호탄"
+  },
+  {
+    "no": 577,
+    "name": "오직민철"
+  },
+  {
+    "no": 578,
+    "name": "이루리"
+  },
+  {
+    "no": 579,
+    "name": "경경경"
+  },
+  {
+    "no": 585,
+    "name": "나무늘봉순"
+  },
+  {
+    "no": 586,
+    "name": "수니단신호탄"
+  },
+  {
+    "no": 587,
+    "name": "찌찌단"
+  },
+  {
+    "no": 588,
+    "name": "오빠하앙"
+  },
+  {
+    "no": 589,
+    "name": "애벌래"
+  },
+  {
+    "no": 590,
+    "name": "슈퍼오빠달려붕붕"
+  },
+  {
+    "no": 591,
+    "name": "계엄령"
+  },
+  {
+    "no": 599,
+    "name": "주녁깅"
+  },
+  {
+    "no": 626,
+    "name": "돌픈단어셈블"
+  },
+  {
+    "no": 646,
+    "name": "작은우낭"
+  },
+  {
+    "no": 650,
+    "name": "두더지"
+  },
+  {
+    "no": 666,
+    "name": "은플단네버다이"
+  },
+  {
+    "no": 697,
+    "name": "흐름유지"
+  },
+  {
+    "no": 709,
+    "name": "작은잘해"
+  },
+  {
+    "no": 712,
+    "name": "와e다"
+  },
+  {
+    "no": 727,
+    "name": "스키스키"
+  },
+  {
+    "no": 777,
+    "name": "베네딕트"
+  },
+  {
+    "no": 789,
+    "name": "꾸리형"
+  },
+  {
+    "no": 797,
+    "name": "신세계"
+  },
+  {
+    "no": 800,
+    "name": "빵훈신호탄"
+  },
+  {
+    "no": 816,
+    "name": "작은삔스"
+  },
+  {
+    "no": 888,
+    "name": "file피리"
+  },
+  {
+    "no": 999,
+    "name": "개쳐발렷쥬"
+  },
+  {
+    "no": 1000,
+    "name": "웰컴투씨나인"
+  },
+  {
+    "no": 1001,
+    "name": "힛더로드잭"
+  },
+  {
+    "no": 1002,
+    "name": "봉다리"
+  },
+  {
+    "no": 1003,
+    "name": "쥬"
+  },
+  {
+    "no": 1004,
+    "name": "퀸어셈블"
+  },
+  {
+    "no": 1005,
+    "name": "Not like us"
+  },
+  {
+    "no": 1007,
+    "name": "시그"
+  },
+  {
+    "no": 1009,
+    "name": "우산"
+  },
+  {
+    "no": 1010,
+    "name": "커멘더H"
+  },
+  {
+    "no": 1011,
+    "name": "BIG LOVE"
+  },
+  {
+    "no": 1012,
+    "name": "만로디"
+  },
+  {
+    "no": 1014,
+    "name": "감나무"
+  },
+  {
+    "no": 1018,
+    "name": "꿀밤족구"
+  },
+  {
+    "no": 1019,
+    "name": "전투3"
+  },
+  {
+    "no": 1020,
+    "name": "호구모오"
+  },
+  {
+    "no": 1021,
+    "name": "Queen34"
+  },
+  {
+    "no": 1022,
+    "name": "Darinss"
+  },
+  {
+    "no": 1023,
+    "name": "사랑한다고"
+  },
+  {
+    "no": 1024,
+    "name": "영원한편돌이"
+  },
+  {
+    "no": 1026,
+    "name": "안드루"
+  },
+  {
+    "no": 1027,
+    "name": "헤이즐"
+  },
+  {
+    "no": 1030,
+    "name": "황태자"
+  },
+  {
+    "no": 1032,
+    "name": "엄써"
+  },
+  {
+    "no": 1033,
+    "name": "애벌레"
+  },
+  {
+    "no": 1034,
+    "name": "박세라신호탄"
+  },
+  {
+    "no": 1035,
+    "name": "안녕아세오"
+  },
+  {
+    "no": 1036,
+    "name": "삼겹구"
+  },
+  {
+    "no": 1037,
+    "name": "다죽"
+  },
+  {
+    "no": 1038,
+    "name": "만개화"
+  },
+  {
+    "no": 1039,
+    "name": "천국가볼래"
+  },
+  {
+    "no": 1040,
+    "name": "Pode"
+  },
+  {
+    "no": 1041,
+    "name": "라네트"
+  },
+  {
+    "no": 1042,
+    "name": "대출갚는더덕"
+  },
+  {
+    "no": 1043,
+    "name": "GAS"
+  },
+  {
+    "no": 1044,
+    "name": "애기뽀스"
+  },
+  {
+    "no": 1045,
+    "name": "무공해"
+  },
+  {
+    "no": 1046,
+    "name": "잘해"
+  },
+  {
+    "no": 1047,
+    "name": "광우철구혜루"
+  },
+  {
+    "no": 1048,
+    "name": "포람페"
+  },
+  {
+    "no": 1049,
+    "name": "밍세구"
+  },
+  {
+    "no": 1050,
+    "name": "창귀"
+  },
+  {
+    "no": 1052,
+    "name": "도링"
+  },
+  {
+    "no": 1053,
+    "name": "한량"
+  },
+  {
+    "no": 1054,
+    "name": "방송볼거없Na"
+  },
+  {
+    "no": 1055,
+    "name": "아로케"
+  },
+  {
+    "no": 1056,
+    "name": "RED"
+  },
+  {
+    "no": 1057,
+    "name": "REX"
+  },
+  {
+    "no": 1058,
+    "name": "오베R"
+  },
+  {
+    "no": 1059,
+    "name": "기사단어셈블"
+  },
+  {
+    "no": 1060,
+    "name": "개물소유"
+  },
+  {
+    "no": 1061,
+    "name": "낭만뽀이"
+  },
+  {
+    "no": 1062,
+    "name": "큐브"
+  },
+  {
+    "no": 1064,
+    "name": "혜루아줌마"
+  },
+  {
+    "no": 1065,
+    "name": "[BB]물개"
+  },
+  {
+    "no": 1066,
+    "name": "v6멜로디"
+  },
+  {
+    "no": 1068,
+    "name": "뿡뿡뚱땅"
+  },
+  {
+    "no": 1069,
+    "name": "더끼"
+  },
+  {
+    "no": 1070,
+    "name": "초월"
+  },
+  {
+    "no": 1071,
+    "name": "왕자지원"
+  },
+  {
+    "no": 1072,
+    "name": "시녀장팀어셈블"
+  },
+  {
+    "no": 1074,
+    "name": "헤븐샷"
+  },
+  {
+    "no": 1075,
+    "name": "낭겨울"
+  },
+  {
+    "no": 1076,
+    "name": "바크콜브"
+  },
+  {
+    "no": 1077,
+    "name": "캐쉬건"
+  },
+  {
+    "no": 1078,
+    "name": "줘패"
+  },
+  {
+    "no": 1079,
+    "name": "터미널"
+  },
+  {
+    "no": 1080,
+    "name": "호구야매"
+  },
+  {
+    "no": 1081,
+    "name": "키다리아저씨"
+  },
+  {
+    "no": 1082,
+    "name": "편지"
+  },
+  {
+    "no": 1083,
+    "name": "코비커리"
+  },
+  {
+    "no": 1084,
+    "name": "배틀탄마린"
+  },
+  {
+    "no": 1085,
+    "name": "아기푸멘"
+  },
+  {
+    "no": 1086,
+    "name": "Clover"
+  },
+  {
+    "no": 1087,
+    "name": "플진남"
+  },
+  {
+    "no": 1088,
+    "name": "v8_멜로디"
+  },
+  {
+    "no": 1089,
+    "name": "퐁퐁구"
+  },
+  {
+    "no": 1090,
+    "name": "들어오는문"
+  },
+  {
+    "no": 1091,
+    "name": "킥썸에스"
+  },
+  {
+    "no": 1092,
+    "name": "큐리슨"
+  },
+  {
+    "no": 1094,
+    "name": "종로왕김두한"
+  },
+  {
+    "no": 1095,
+    "name": "시간을구독중"
+  },
+  {
+    "no": 1097,
+    "name": "코인러형규"
+  },
+  {
+    "no": 1099,
+    "name": "람보르기니"
+  },
+  {
+    "no": 1100,
+    "name": "은유화1"
+  },
+  {
+    "no": 1101,
+    "name": "슈가"
+  },
+  {
+    "no": 1102,
+    "name": "강남일개미"
+  },
+  {
+    "no": 1103,
+    "name": "water"
+  },
+  {
+    "no": 1104,
+    "name": "love1004"
+  },
+  {
+    "no": 1105,
+    "name": "윙백"
+  },
+  {
+    "no": 1106,
+    "name": "소령"
+  },
+  {
+    "no": 1107,
+    "name": "징징쓰v"
+  },
+  {
+    "no": 1109,
+    "name": "강포커"
+  },
+  {
+    "no": 1110,
+    "name": "천원은있다"
+  },
+  {
+    "no": 1111,
+    "name": "Me낼름"
+  },
+  {
+    "no": 1112,
+    "name": "야부리맨"
+  },
+  {
+    "no": 1113,
+    "name": "공주야오빠왔다"
+  },
+  {
+    "no": 1114,
+    "name": "어림없지"
+  },
+  {
+    "no": 1115,
+    "name": "예수형2"
+  },
+  {
+    "no": 1116,
+    "name": "라페라리"
+  },
+  {
+    "no": 1117,
+    "name": "Spurs77"
+  },
+  {
+    "no": 1118,
+    "name": "감성충카블라"
+  },
+  {
+    "no": 1119,
+    "name": "JUNU"
+  },
+  {
+    "no": 1120,
+    "name": "나돌이"
+  },
+  {
+    "no": 1122,
+    "name": "위장"
+  },
+  {
+    "no": 1123,
+    "name": "한 여름밤의 꿈"
+  },
+  {
+    "no": 1124,
+    "name": "응이사"
+  },
+  {
+    "no": 1126,
+    "name": "단풍이든다"
+  },
+  {
+    "no": 1130,
+    "name": "커즈"
+  },
+  {
+    "no": 1133,
+    "name": "산멘"
+  },
+  {
+    "no": 1139,
+    "name": "호랑수월가"
+  },
+  {
+    "no": 1142,
+    "name": "부비"
+  },
+  {
+    "no": 1154,
+    "name": "되는닉이없네"
+  },
+  {
+    "no": 1155,
+    "name": "로로"
+  },
+  {
+    "no": 1157,
+    "name": "철줌마효진"
+  },
+  {
+    "no": 1159,
+    "name": "허당박"
+  },
+  {
+    "no": 1162,
+    "name": "이솔신호탄"
+  },
+  {
+    "no": 1164,
+    "name": "라페스타"
+  },
+  {
+    "no": 1166,
+    "name": "Heart"
+  },
+  {
+    "no": 1170,
+    "name": "오늘만산다"
+  },
+  {
+    "no": 1172,
+    "name": "퀘이샤"
+  },
+  {
+    "no": 1174,
+    "name": "벨라74"
+  },
+  {
+    "no": 1176,
+    "name": "Fall_"
+  },
+  {
+    "no": 1177,
+    "name": "초초신호탄"
+  },
+  {
+    "no": 1178,
+    "name": "철박이"
+  },
+  {
+    "no": 1179,
+    "name": "아기뭉멘"
+  },
+  {
+    "no": 1181,
+    "name": "페라리v12"
+  },
+  {
+    "no": 1183,
+    "name": "차이은신호탄"
+  },
+  {
+    "no": 1188,
+    "name": "C9임"
+  },
+  {
+    "no": 1189,
+    "name": "좀비"
+  },
+  {
+    "no": 1190,
+    "name": "00년생"
+  },
+  {
+    "no": 1199,
+    "name": "인생뭐있어"
+  },
+  {
+    "no": 1200,
+    "name": "취팔형2"
+  },
+  {
+    "no": 1201,
+    "name": "쿨쿨"
+  },
+  {
+    "no": 1211,
+    "name": "Sexy Queen"
+  },
+  {
+    "no": 1212,
+    "name": "Lacrimosa"
+  },
+  {
+    "no": 1222,
+    "name": "마티니"
+  },
+  {
+    "no": 1223,
+    "name": "족구졸려"
+  },
+  {
+    "no": 1226,
+    "name": "BBinnss"
+  },
+  {
+    "no": 1228,
+    "name": "카리"
+  },
+  {
+    "no": 1234,
+    "name": "Queens"
+  },
+  {
+    "no": 1242,
+    "name": "차이은"
+  },
+  {
+    "no": 1246,
+    "name": "혜루찡"
+  },
+  {
+    "no": 1247,
+    "name": "Atumn"
+  },
+  {
+    "no": 1248,
+    "name": "왜유화"
+  },
+  {
+    "no": 1250,
+    "name": "미오탱"
+  },
+  {
+    "no": 1251,
+    "name": "폭염엔탱플"
+  },
+  {
+    "no": 1252,
+    "name": "v12_멜로디"
+  },
+  {
+    "no": 1254,
+    "name": "탱베이비"
+  },
+  {
+    "no": 1255,
+    "name": "북동2"
+  },
+  {
+    "no": 1256,
+    "name": "수라"
+  },
+  {
+    "no": 1258,
+    "name": "허군"
+  },
+  {
+    "no": 1259,
+    "name": "북동"
+  },
+  {
+    "no": 1262,
+    "name": "안드루"
+  },
+  {
+    "no": 1272,
+    "name": "채플단어셈블"
+  },
+  {
+    "no": 1276,
+    "name": "석ddd"
+  },
+  {
+    "no": 1277,
+    "name": "충충충"
+  },
+  {
+    "no": 1280,
+    "name": "희셈블"
+  },
+  {
+    "no": 1284,
+    "name": "#woorinangni"
+  },
+  {
+    "no": 1288,
+    "name": "낭밍플"
+  },
+  {
+    "no": 1290,
+    "name": "barbie girl"
+  },
+  {
+    "no": 1303,
+    "name": "영삼"
+  },
+  {
+    "no": 1308,
+    "name": "쫄병"
+  },
+  {
+    "no": 1333,
+    "name": "낭국지"
+  },
+  {
+    "no": 1334,
+    "name": "니엘형"
+  },
+  {
+    "no": 1340,
+    "name": "Sera up!"
+  },
+  {
+    "no": 1355,
+    "name": "포에버아로케"
+  },
+  {
+    "no": 1357,
+    "name": "썸머G"
+  },
+  {
+    "no": 1365,
+    "name": "체온신호탄"
+  },
+  {
+    "no": 1372,
+    "name": "[C9]잘해"
+  },
+  {
+    "no": 1444,
+    "name": "SNS"
+  },
+  {
+    "no": 1445,
+    "name": "세멘"
+  },
+  {
+    "no": 1500,
+    "name": "짭예비형"
+  },
+  {
+    "no": 1515,
+    "name": "짭승환형"
+  },
+  {
+    "no": 1521,
+    "name": "오승환이다"
+  },
+  {
+    "no": 1542,
+    "name": "어둠의낭플단"
+  },
+  {
+    "no": 1551,
+    "name": "chocoping"
+  },
+  {
+    "no": 1558,
+    "name": "작은꼴망"
+  },
+  {
+    "no": 1565,
+    "name": "낭로우로우로"
+  },
+  {
+    "no": 1585,
+    "name": "꼴망꼴망"
+  },
+  {
+    "no": 1587,
+    "name": "싸대기때리자"
+  },
+  {
+    "no": 1589,
+    "name": "빅더끼"
+  },
+  {
+    "no": 1666,
+    "name": "은플단워리어"
+  },
+  {
+    "no": 1676,
+    "name": "피카츄69"
+  },
+  {
+    "no": 1696,
+    "name": "골타69"
+  },
+  {
+    "no": 1727,
+    "name": "까멘"
+  },
+  {
+    "no": 1828,
+    "name": "카블라"
+  },
+  {
+    "no": 1888,
+    "name": "작은예멘"
+  },
+  {
+    "no": 1997,
+    "name": "프지니"
+  },
+  {
+    "no": 1999,
+    "name": "조로"
+  },
+  {
+    "no": 2000,
+    "name": "우끼긴하네"
+  },
+  {
+    "no": 2009,
+    "name": "약속해"
+  },
+  {
+    "no": 2010,
+    "name": "By.t"
+  },
+  {
+    "no": 2020,
+    "name": "큰호구모오"
+  },
+  {
+    "no": 2024,
+    "name": "슈퍼 영원한편돌이"
+  },
+  {
+    "no": 2025,
+    "name": "큰오승환"
+  },
+  {
+    "no": 2030,
+    "name": "킹황태자"
+  },
+  {
+    "no": 2035,
+    "name": "캡틴썸머G"
+  },
+  {
+    "no": 2042,
+    "name": "큰라네트"
+  },
+  {
+    "no": 2054,
+    "name": "큰없네"
+  },
+  {
+    "no": 2057,
+    "name": "뭉크뭉"
+  },
+  {
+    "no": 2069,
+    "name": "DOPAMINE69"
+  },
+  {
+    "no": 2082,
+    "name": "갓카블라"
+  },
+  {
+    "no": 2100,
+    "name": "큰천멘"
+  },
+  {
+    "no": 2109,
+    "name": "킹포커"
+  },
+  {
+    "no": 2111,
+    "name": "겨울왕국"
+  },
+  {
+    "no": 2112,
+    "name": "슈퍼야부리맨"
+  },
+  {
+    "no": 2125,
+    "name": "v12_멜로디"
+  },
+  {
+    "no": 2200,
+    "name": "티머니"
+  },
+  {
+    "no": 2230,
+    "name": "큰나돌이"
+  },
+  {
+    "no": 2444,
+    "name": "큰세맨"
+  },
+  {
+    "no": 2587,
+    "name": "큰싸대기때리자"
+  },
+  {
+    "no": 2626,
+    "name": "안드루"
+  },
+  {
+    "no": 2676,
+    "name": "큰피카츄69"
+  },
+  {
+    "no": 2696,
+    "name": "슈퍼골타"
+  },
+  {
+    "no": 2727,
+    "name": "빅까멘"
+  },
+  {
+    "no": 2824,
+    "name": "큰우낭"
+  },
+  {
+    "no": 2828,
+    "name": "큰카블라"
+  },
+  {
+    "no": 2888,
+    "name": "시아나"
+  },
+  {
+    "no": 2911,
+    "name": "큰라페스타"
+  },
+  {
+    "no": 2927,
+    "name": "슈퍼까멘"
+  },
+  {
+    "no": 2948,
+    "name": "v12_romance"
+  },
+  {
+    "no": 2957,
+    "name": "슈퍼뭉크뭉"
+  },
+  {
+    "no": 2989,
+    "name": "대쫄병"
+  },
+  {
+    "no": 2997,
+    "name": "1%"
+  },
+  {
+    "no": 2999,
+    "name": "큰예맨"
+  },
+  {
+    "no": 3000,
+    "name": "씨나인 3만개"
+  },
+  {
+    "no": 3052,
+    "name": "10만v12_멜로디"
+  },
+  {
+    "no": 3069,
+    "name": "69어셈블"
+  },
+  {
+    "no": 3444,
+    "name": "슈퍼세비지"
+  },
+  {
+    "no": 3858,
+    "name": "Always vvely km"
+  },
+  {
+    "no": 3888,
+    "name": "예수님"
+  },
+  {
+    "no": 5000,
+    "name": "BIG C9"
+  },
+  {
+    "no": 10000,
+    "name": "10만"
+  },
+  {
+    "no": 20000,
+    "name": "20만"
+  },
+  {
+    "no": 30000,
+    "name": "30만"
+  }
+]
+</script>
+
+<script>
+// 기존 동작 보존: 검색 + 정렬 토글
+const input = document.getElementById("search");
+const table = document.getElementById("sigTable");
+const tbody = document.getElementById("tbody");
+const raw = document.getElementById("data").textContent;
+const SIGS = JSON.parse(raw); // [{no, name}]
+
+let ascending = true;
+let current = [...SIGS];
+
+// 렌더링 (기존 스타일 유지, 이름 앞에 │ 세로선 표시)
+function render(rows) {
+  tbody.innerHTML = rows.map(({no, name}) => (
+    `<tr>
+       <td>${no}</td>
+       <td class="sig-name">│ ${escapeHtml(name)}</td>
+     </tr>`
+  )).join("");
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+// 초기 렌더
+render(current);
+
+// 검색
+input.addEventListener("keyup", function() {
+  const q = input.value.toLowerCase().trim();
+  current = SIGS.filter(({no, name}) =>
+    String(no).includes(q) || name.toLowerCase().includes(q)
+  );
+  sortInPlace(current);
+  render(current);
+});
+
+// 정렬
+function sortInPlace(arr) {
+  arr.sort((a,b) => ascending ? (a.no - b.no) : (b.no - a.no));
+}
+
+function sortTable() {
+    ascending = !ascending;
+    sortInPlace(current);
+    render(current);
+    table.rows[0].cells[0].innerHTML = ascending ? "번호 ▲" : "번호 ▼";
+}
+
+// 페이지 로드시 오름차순 정렬 보장
+sortInPlace(current);
+render(current);
+</script>
+</body>
+</html>
